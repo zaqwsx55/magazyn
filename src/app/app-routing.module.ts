@@ -6,12 +6,15 @@ import { SprzetyComponent } from './sprzety/sprzety.component';
 
 const routes = [
   { path: 'uzytkownicy', component: UzytkownicyComponent },
-  { path: 'srzety', component: SprzetyComponent }
+  { path: 'sprzety', component: SprzetyComponent }
 ]
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }
