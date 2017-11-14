@@ -6,10 +6,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SprzetyComponent } from './sprzety/sprzety.component';
 import { UzytkownicyComponent } from './uzytkownicy/uzytkownicy.component';
-import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,10 @@ import { AppRoutingModule } from './/app-routing.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
-    AppRoutingModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

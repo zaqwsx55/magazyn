@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-  <span>Magazyn</span>
-  <button mat-button>Sprzęt</button>  
+  <span routerLink="/">Magazyn</span>
+  <button mat-button routerLink="/uzytkownicy">Użytkownicy</button>
+  <button mat-button routerLink="/sprzety">Sprzęty</button>
   <span class="example-spacer"></span>
   <mat-icon>favorite</mat-icon>
 </mat-toolbar>
@@ -10,3 +11,5 @@
     Welcome to {{title}}!!
   </h1>
 </div>
+
+<router-outlet></router-outlet>
