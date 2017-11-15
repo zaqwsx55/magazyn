@@ -15,6 +15,10 @@ export class DevicesComponent implements OnInit {
   constructor(private devicesService: DeviceService) { }
 
   ngOnInit() {
+    this.getDevices();
+  }
+
+  getDevices(): void {
     this.devices = this.devicesService.getDevices();
   }
 
