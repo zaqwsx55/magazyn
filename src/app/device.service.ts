@@ -7,10 +7,14 @@ export class DeviceService {
 
   devices = [
     {
-      name: 'Dell e6430s'
+      name: 'Dell e6430s',
+      type: 'Laptop',
+      image: 'dell-latitude-e6430s.jpg'
     },
     {
-      name: 'Kyocera FS9530'
+      name: 'Kyocera FS-9530DN',
+      type: 'Drukarka',
+      image: 'kyocera-fs9530dn.jpg'
     }
   ];
 
