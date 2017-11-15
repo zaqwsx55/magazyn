@@ -1,10 +1,16 @@
-<mat-card *ngFor="let device of devices">
-  <mat-card-header>
-    <mat-icon>home</mat-icon>
-    <mat-card-header>{{ device.name }}</mat-card-header>
-  </mat-card-header>
-  <img mat-card-image src="assets/img/devices/{{device.image}}" alt="{{ device.name }}">
-  <mat-card-content>
-    <p>{{ device.name }}</p>
-  </mat-card-content>
-</mat-card>
+<div fxLayout="row">
+  <div fxFlex="30" *ngFor="let device of devices">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar><mat-icon>{{ device.icon }}</mat-icon></div>
+        <mat-card-title>{{ device.name }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="assets/img/devices/{{device.image}}" alt="{{ device.name }}">
+      <mat-card-content>
+        <p>{{ device.name }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
