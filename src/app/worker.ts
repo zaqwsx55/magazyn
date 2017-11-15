@@ -1,6 +1,7 @@
-export class User {
+export class Worker {
 
     firstName: string;
     lastName: string;
+    gender: string;
 
 }
