@@ -17,6 +17,24 @@ export class DeviceService {
       type: 'Drukarka',
       icon: 'print',
       image: 'kyocera-fs9530dn.jpg'
+    },
+    {
+      name: 'Fujitsu Fi-6240Z',
+      type: 'Skaner',
+      icon: 'scanner',
+      image: 'fujitsu-fi6240z.jpg'
+    },
+    {
+      name: 'IP Cisco CP-7975G',
+      type: 'Telefon',
+      icon: 'phone',
+      image: 'cisco-7975g.jpg'
+    },
+    {
+      name: 'Switch D-Link DGS-1008P',
+      type: 'Sieć',
+      icon: 'router',
+      image: 'DGS-1008P.png'
     }
   ];
 
