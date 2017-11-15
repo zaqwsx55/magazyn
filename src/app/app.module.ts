@@ -25,6 +25,7 @@ import { DeviceService } from './device.service';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
