@@ -8,14 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SprzetyComponent } from './sprzety/sprzety.component';
-import { UzytkownicyComponent } from './uzytkownicy/uzytkownicy.component';
+import { WorkersComponent } from './workers/workers.component';
+import { DevicesComponent } from './devices/devices.component';
+import { WorkerService } from './worker.service';
+import { DeviceService } from './device.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SprzetyComponent,
-    UzytkownicyComponent
+    WorkersComponent,
+    DevicesComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { UzytkownicyComponent } from './uzytkownicy/uzytkownicy.component';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [WorkerService, DeviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
