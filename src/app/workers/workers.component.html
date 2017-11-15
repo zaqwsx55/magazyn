@@ -1,3 +1,8 @@
-<p>
-  workers works!
-</p>
+<div>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let worker of workers">
+      <mat-icon color="primary">person</mat-icon>
+      <p>{{ worker.firstName }} {{ worker.lastName }}</p>
+    </mat-list-item>
+  </mat-nav-list>
+</div>
