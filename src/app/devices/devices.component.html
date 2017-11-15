@@ -1,11 +1,12 @@
-<div fxLayout="row">
-  <div fxFlex="30" *ngFor="let device of devices">
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center start" fxLayoutGap="5px">
+  <div fxFlex="32" *ngFor="let device of devices">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar><mat-icon>{{ device.icon }}</mat-icon></div>
+        <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.icon }}</mat-icon></div>
         <mat-card-title>{{ device.name }}</mat-card-title>
+        <mat-card-subtitle>{{ device.type }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="assets/img/devices/{{device.image}}" alt="{{ device.name }}">
+      <img mat-card-image src="assets/img/devices/{{ device.image }}" alt="{{ device.name }}" class="device-image">
       <mat-card-content>
         <p>{{ device.name }}</p>
       </mat-card-content>
