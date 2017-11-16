@@ -1,8 +1,24 @@
-<div class="mat-card">
-  <mat-nav-list>
-    <mat-list-item *ngFor="let worker of workers">
-      <mat-icon color="primary">person</mat-icon>
-      <p>{{ worker.firstName }} {{ worker.lastName }}.</p>
-    </mat-list-item>
-  </mat-nav-list>
+<div fxLayout>
+
+  <div fxFlex>
+    <mat-card>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
+          <mat-icon color="primary">person</mat-icon>
+          <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-card>
+  </div>
+
+</div>
+
+<div fxLayout="row" fxLayoutAlign="end start">
+    
+  <div fxFlex="75px">
+    <button mat-fab routerLink="/workeredit">
+      <mat-icon class="add-button">add</mat-icon>
+    </button>
+  </div>
+
 </div>
