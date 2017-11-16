@@ -1,0 +1,28 @@
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+
+  <div fxFlex="80">
+    <mat-card>
+      <mat-card-header>
+        <mat-toolbar>{{ worker.firstName }} {{ worker.lastName }}</mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Id: <strong>{{ worker.id }}</strong></p>
+        <p>Imię: {{ worker.firstName }}</p>
+        <p>Nazwisko: {{ worker.lastName }}</p>
+        <p>Płeć: {{ worker.gender }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div fxFlex="80">
+    <mat-card>
+      <mat-card-header>
+        <mat-toolbar>Posiadany sprzęt</mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        {{ worker.gender }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
