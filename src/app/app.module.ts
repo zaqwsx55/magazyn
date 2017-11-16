@@ -15,16 +15,22 @@ import { WorkersComponent } from './workers/workers.component';
 import { DevicesComponent } from './devices/devices.component';
 import { WorkerService } from './worker.service';
 import { DeviceService } from './device.service';
+import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
+import { WorkerEditComponent } from './worker-edit/worker-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkersComponent,
-    DevicesComponent
+    DevicesComponent,
+    WorkerDetailComponent,
+    WorkerEditComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     MatToolbarModule,
