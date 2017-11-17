@@ -1,3 +1,17 @@
-<p>
-  worker-edit works!
-</p>
+<h3>Worker Edit</h3>
+<div>Worker id: {{ worker.id }}</div>
+
+<mat-form-field>
+  <input matInput placeholder="Imię">
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput placeholder="Nazwisko">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="Select">
+    <mat-option value="m">Mężczyzna</mat-option>
+    <mat-option value="f">Kobieta</mat-option>
+  </mat-select>
+</mat-form-field>

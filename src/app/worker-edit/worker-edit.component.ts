@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
+
+import { WorkerService } from './../worker.service';
+import { Worker } from '../worker';
 
 @Component({
   selector: 'app-worker-edit',
@@ -9,14 +11,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WorkerEditComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  worker: Worker;
+
+  constructor(private activatedRoute: ActivatedRoute, private workerService: WorkerService) { }
 
   ngOnInit() {
+    this.getWorker();
+  }
+
+  getWorker() {
     const id = this.activatedRoute.snapshot.params.id;
     if (id) {
-      console.log('ID: ' + id);
+      this.worker = this.workerService.getWorker(id);
     } else {
-      console.log('Brak id');
+      this.worker = new Worker();
     }
   }
 
