@@ -3,7 +3,11 @@
   <div fxFlex="80">
     <mat-card>
       <mat-card-header>
-        <mat-toolbar>{{ worker.firstName }} {{ worker.lastName }}</mat-toolbar>
+        <mat-toolbar>
+          <span>{{ worker.firstName }} {{ worker.lastName }}</span>
+          <span class="spacer"></span>
+          <button mat-button routerLink="/workeredit/{{ worker.id }}"><mat-icon>edit</mat-icon></button>
+        </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
         <p>Id: <strong>{{ worker.id }}</strong></p>

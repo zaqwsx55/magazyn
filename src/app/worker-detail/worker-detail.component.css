@@ -12,3 +12,7 @@
 .mat-toolbar {
     color: #666666;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
