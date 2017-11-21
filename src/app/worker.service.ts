@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class WorkerService {
+
+  private workersUrl = '';
 
   private workers = [
     {
@@ -31,7 +35,7 @@ export class WorkerService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getWorkers() {
     return this.workers;
