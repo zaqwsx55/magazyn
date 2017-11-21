@@ -3,7 +3,7 @@
   <div fxFlex="90">
     <mat-card>
       <mat-nav-list>
-        <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
+        <mat-list-item *ngFor="let worker of workers | async" routerLink="/workers/{{ worker.id }}">
           <mat-icon color="primary">person</mat-icon>
           <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
         </mat-list-item>

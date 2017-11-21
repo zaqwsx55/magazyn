@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 import { WorkerService } from '../worker.service';
 import { Worker } from '../worker';
@@ -10,12 +12,17 @@ import { Worker } from '../worker';
 })
 export class WorkersComponent implements OnInit {
 
-  workers: Worker[];
+  workers: Observable<any[]>;
 
-  constructor(private workersService: WorkerService) { }
+  // workers: Worker[];
+
+  constructor(private workersService: WorkerService, private db: AngularFirestore) { }
 
   ngOnInit() {
     this.getWorkers();
+
+    // this.workersFire = this.db.collection('workers').valueChanges();
+    // console.log(this.workersFire);
   }
 
   getWorkers() {
