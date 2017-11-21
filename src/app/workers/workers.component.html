@@ -1,6 +1,6 @@
-<div fxLayout>
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
 
-  <div fxFlex>
+  <div fxFlex="90">
     <mat-card>
       <mat-nav-list>
         <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
@@ -13,9 +13,9 @@
 
 </div>
 
-<div fxLayout="row" fxLayoutAlign="end start">
+<div fxLayout="row" fxLayoutAlign="end start" fxLayoutWrap="wrap">
     
-  <div fxFlex="75px">
+  <div fxFlex="110px">
     <button mat-fab routerLink="/workeredit">
       <mat-icon class="add-button">add</mat-icon>
     </button>
