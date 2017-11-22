@@ -9,13 +9,13 @@ export class WorkerService {
   workersCollection: AngularFirestoreCollection<Worker>;
   workers: Observable<Worker[]>;
 
-  workerDoc: AngularFirestoreDocument<Worker>;
+  workerDocument: AngularFirestoreDocument<Worker>;
   worker: Observable<Worker>;
 
   constructor(private db: AngularFirestore) { }
 
   getWorkers(): Observable<Worker[]> {
-    this.workersCollection = this.db.collection<Worker>('workers');
+    this.workersCollection = this.db.collection('workers');
     this.workers = this.workersCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Worker;
@@ -27,9 +27,21 @@ export class WorkerService {
   }
 
   getWorker(id: string) {
-    this.workerDoc = this.db.doc<Worker>('workers/' + id);
-    this.worker = this.workerDoc.valueChanges();
+    this.workerDocument = this.db.doc('workers/' + id);
+    this.worker = this.workerDocument.valueChanges();
     return this.worker;
+  }
+
+  addWorker(worker: Worker) {
+    this.db.collection('workers').add(worker);
+  }
+
+  updateWorker(id: string, newWorker: Worker) {
+    this.db.doc('/workers/' + id).update(newWorker);
+  }
+
+  deleteWorker(id: string) {
+    this.db.doc('/workers/' + id).delete();
   }
 
 }
