@@ -2,10 +2,12 @@
 
   <div fxFlex="90">
     <mat-card>
+      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>  
       <mat-nav-list>
         <mat-list-item *ngFor="let worker of workers | async" routerLink="/workers/{{ worker.id }}">
           <mat-icon color="primary">person</mat-icon>
           <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
+          <p> Id: {{ worker.id }}</p>
         </mat-list-item>
       </mat-nav-list>
     </mat-card>
@@ -13,7 +15,7 @@
 
 </div>
 
-<div fxLayout="row" fxLayoutAlign="end start" fxLayoutWrap="wrap">
+<div fxLayout="row" fxLayoutAlign="end start" fxLayoutWrap="wrap" *ngIf="!showSpinner">
     
   <div fxFlex="110px">
     <button mat-fab routerLink="/workeredit">

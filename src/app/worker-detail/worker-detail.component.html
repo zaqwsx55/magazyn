@@ -4,16 +4,16 @@
     <mat-card>
       <mat-card-header>
         <mat-toolbar>
-          <span>{{ worker.firstName }} {{ worker.lastName }}</span>
+          <span>{{ (worker | async)?.firstName }} {{ (worker | async)?.lastName }}</span>
           <span class="spacer"></span>
-          <button mat-button routerLink="/workeredit/{{ worker.id }}"><mat-icon>edit</mat-icon></button>
+          <button mat-button routerLink="/workeredit/{{ workerId }}"><mat-icon>edit</mat-icon></button>
         </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
-        <p>Id: <strong>{{ worker.id }}</strong></p>
-        <p>Imię: {{ worker.firstName }}</p>
-        <p>Nazwisko: {{ worker.lastName }}</p>
-        <p>Płeć: {{ worker.gender }}</p>
+        <p>Id: <strong>{{ workerId }}</strong></p>
+        <p>Imię: {{ (worker | async)?.firstName }}</p>
+        <p>Nazwisko: {{ (worker | async)?.lastName }}</p>
+        <p>Płeć: {{ (worker | async)?.gender }}</p>
       </mat-card-content>
     </mat-card>
   </div>

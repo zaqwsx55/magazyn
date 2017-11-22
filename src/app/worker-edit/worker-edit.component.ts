@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
+
+import { FormControl } from '@angular/forms';
+
+
+
+import { Observable } from 'rxjs/Observable';
+
 import { WorkerService } from './../worker.service';
 import { Worker } from '../worker';
 
@@ -11,20 +19,30 @@ import { Worker } from '../worker';
 })
 export class WorkerEditComponent implements OnInit {
 
-  worker: Worker;
+  firstName = new FormControl();
+  lastName = new FormControl();
+  gender = new FormControl();
+
+  workerId: string;
+  worker: Observable<any>;
 
   constructor(private activatedRoute: ActivatedRoute, private workerService: WorkerService) { }
 
   ngOnInit() {
+    this.workerId = this.activatedRoute.snapshot.params.id;
     this.getWorker();
   }
 
   getWorker() {
-    const id = this.activatedRoute.snapshot.params.id;
-    if (id) {
-      this.worker = this.workerService.getWorker(id);
+    if (this.workerId) {
+      this.worker = this.workerService.getWorker(this.workerId);
+      this.worker.subscribe((w) => {
+        this.firstName.setValue(w.firstName);
+        this.lastName.setValue(w.lastName);
+        this.gender.setValue(w.gender);
+      });
     } else {
-      this.worker = new Worker();
+      // this.name.setValue('');
     }
   }
 

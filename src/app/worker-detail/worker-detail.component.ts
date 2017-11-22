@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { Worker } from '../worker';
 import { WorkerService } from './../worker.service';
@@ -19,19 +20,18 @@ export class WorkerDetailComponent implements OnInit {
   // @HostBinding('style.display') display = 'block';
   // @HostBinding('style.position') position = 'absolute';
 
-  worker: Worker;
+  private workerId: string;
+  worker: Observable<any>;
 
   constructor(private route: ActivatedRoute, private workerService: WorkerService) { }
 
   ngOnInit() {
+    this.workerId = this.route.snapshot.params.id;
     this.getWorker();
   }
 
   getWorker() {
-    const id = this.route.snapshot.params.id;
-    // const id = this.route.snapshot.paramMap.get('id');
-    this.worker = this.workerService.getWorker(id);
-    console.log(this.worker);
+    this.worker = this.workerService.getWorker(this.workerId);
   }
 
 }

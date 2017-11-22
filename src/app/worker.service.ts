@@ -1,49 +1,35 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WorkerService {
 
-  workers: Observable<any[]>;
+  workersCollection: AngularFirestoreCollection<Worker>;
+  workers: Observable<Worker[]>;
 
-  // private workers = [
-  //   {
-  //     id: '1',
-  //     firstName: 'Marcin',
-  //     lastName: 'R',
-  //     gender: 'm'
-  //   },
-  //   {
-  //     id: '2',
-  //     firstName: 'Piotr',
-  //     lastName: 'B',
-  //     gender: 'm'
-  //   },
-  //   {
-  //     id: '3',
-  //     firstName: 'Marzena',
-  //     lastName: 'Ł',
-  //     gender: 'f'
-  //   },
-  //   {
-  //     id: '4',
-  //     firstName: 'Czesław',
-  //     lastName: 'O',
-  //     gender: 'm'
-  //   }
-  // ];
+  workerDoc: AngularFirestoreDocument<Worker>;
+  worker: Observable<Worker>;
 
   constructor(private db: AngularFirestore) { }
 
-  getWorkers() {
-    this.workers = this.db.collection('workers').valueChanges();
+  getWorkers(): Observable<Worker[]> {
+    this.workersCollection = this.db.collection<Worker>('workers');
+    this.workers = this.workersCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Worker;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
     return this.workers;
-    // return this.workers;
   }
 
   getWorker(id: string) {
-    // return this.workers.find(worker => worker.id === id);
+    this.workerDoc = this.db.doc<Worker>('workers/' + id);
+    this.worker = this.workerDoc.valueChanges();
+    return this.worker;
   }
 
 }

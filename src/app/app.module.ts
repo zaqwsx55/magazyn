@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+
+import { ReactiveFormsModule } from '@angular/forms'; 
+
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from 'angularfire2';
@@ -28,6 +32,7 @@ import { DeviceService } from './device.service';
 import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DevicesComponent,
     WorkerDetailComponent,
     WorkerEditComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,6 +51,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
+
+    ReactiveFormsModule,
+
+
+
     HttpClientModule,
     AppRoutingModule,
     FlexLayoutModule,
