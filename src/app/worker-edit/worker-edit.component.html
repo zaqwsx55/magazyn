@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
   <div fxFlex="90">
-    <form [formGroup]="workerForm" novalidate>      
+    <form [formGroup]="workerForm" (ngSubmit)="addWorker(workerForm.value)" novalidate>      
       <mat-card>
         <mat-card-content>
-          <h3>Worker Edit</h3>
+          <h2>Worker Edit</h2>
           <div>Worker id: {{ workerId }}</div>        
           <mat-form-field>
             <input matInput placeholder="Imię" formControlName="firstName">
@@ -19,6 +19,8 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
+          <input type="submit" class="mat-button" value="Zapisz" [disabled]="!workerForm.valid">
+          <button type="submit" mat-button [disabled]="!workerForm.valid">Zapisz 2</button>
           <button mat-raised-button>Zapisz</button>
           <button mat-button>Anuluj</button>
         </mat-card-actions>
