@@ -1,10 +1,10 @@
-<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap" *ngIf="workers | async as workers; else loading">
 
   <div fxFlex="90">
     <mat-card>
-      <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>  
+       
       <mat-nav-list>
-        <mat-list-item *ngFor="let worker of workers | async" routerLink="/workers/{{ worker.id }}">
+        <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
           <mat-icon color="primary">person</mat-icon>
           <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
           <p> Id: {{ worker.id }}</p>
@@ -24,3 +24,7 @@
   </div>
 
 </div>
+
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
