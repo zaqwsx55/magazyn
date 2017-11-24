@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,8 @@ export class WorkerEditComponent implements OnInit {
   workerId: string;
   worker: Observable<any>;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
               private workerService: WorkerService,
               private formBuilder: FormBuilder) { }
 
@@ -33,7 +34,7 @@ export class WorkerEditComponent implements OnInit {
     this.workerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', [Validators.required, Validators.maxLength(1)]],
-      gender: ''
+      gender: ['', Validators.required]
     });
   }
 
@@ -48,6 +49,14 @@ export class WorkerEditComponent implements OnInit {
         });
       });
     }
+  }
+
+  addWorker(a: any) {
+    console.log(a);
+  }
+
+  goToWorkers() {
+    this.router.navigate(['/workers']);
   }
 
 }
