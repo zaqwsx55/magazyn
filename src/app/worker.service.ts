@@ -14,8 +14,8 @@ export class WorkerService {
 
   constructor(private db: AngularFirestore) { }
 
-  getWorkers(): Observable<Worker[]> {
-    this.workersCollection = this.db.collection('workers');
+  getWorkers(sortField, sortOrder): Observable<Worker[]> {
+    this.workersCollection = this.db.collection('workers', ref => ref.orderBy(sortField, sortOrder));
     this.workers = this.workersCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Worker;
