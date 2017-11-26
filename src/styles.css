@@ -8,5 +8,9 @@ body {
     /*font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;*/
     /* font-family: 'Open Sans', sans-serif !important;     */
     font-family: 'Muli', Roboto, sans-serif;
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
+}
+
+.mat-card, .mat-button, .mat-form-field, .mat-list-item, .mat-toolbar, .mat-select, .mat-option {
+    font-family: 'Muli', Roboto, sans-serif;
 }
