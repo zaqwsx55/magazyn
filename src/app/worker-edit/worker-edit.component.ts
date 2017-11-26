@@ -14,6 +14,8 @@ import { Worker } from '../worker';
 })
 export class WorkerEditComponent implements OnInit {
 
+  pageTitle = 'Dodaj pracownika';
+
   workerForm: FormGroup;
 
   workerId: string;
@@ -27,7 +29,10 @@ export class WorkerEditComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.workerId = this.activatedRoute.snapshot.params.id;
-    this.getWorker();
+    if (this.workerId) {
+      this.pageTitle = 'Edycja pracownika';
+      this.getWorker();
+    }
   }
 
   createForm() {
@@ -51,8 +56,13 @@ export class WorkerEditComponent implements OnInit {
     }
   }
 
-  addWorker(a: any) {
-    console.log(a);
+  saveWorker(formData) {
+    if (this.workerId) {
+      this.workerService.updateWorker(this.workerId, formData);
+    } else {
+      this.workerService.addWorker(formData);
+    }
+    this.goToWorkers();
   }
 
   goToWorkers() {
