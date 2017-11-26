@@ -1,16 +1,58 @@
+<div style="text-align:center">
+  <h1>Lista pracowników</h1>
+</div>
+
 <div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap" *ngIf="workers | async as workers; else loading">
 
   <div fxFlex="90">
+
     <mat-card>
-       
-      <mat-nav-list>
-        <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
-          <mat-icon color="primary">person</mat-icon>
-          <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
-          <p> Id: {{ worker.id }}</p>
-        </mat-list-item>
-      </mat-nav-list>
+      <mat-card-content>
+
+        <div fxLayout="row" fxLayoutWrap="wrap">
+
+          <div fxFlex="75">
+            <mat-nav-list>
+              <mat-list-item *ngFor="let worker of workers" routerLink="/workers/{{ worker.id }}">
+                <mat-icon color="primary" [ngClass]="{'red-icon': worker.gender === 'f'}">person</mat-icon>
+                <p class="worker">{{ worker.firstName }} {{ worker.lastName }}.</p>
+                <p> Id: {{ worker.id }}</p>
+              </mat-list-item>
+            </mat-nav-list>
+          </div>
+
+          <div fxFlex>
+            <form [formGroup]="sortForm">
+              <mat-form-field>
+                <mat-select formControlName="sort" placeholder="Sortuj według" (change)="onSortChanged()">
+                  <mat-option value="firstName-asc">Imię &darr;</mat-option>
+                  <mat-option value="firstName-desc">Imię &uarr;</mat-option>
+                  <mat-option value="lastName-asc">Nazwisko &darr;</mat-option>
+                  <mat-option value="lastName-desc">Nazwisko &uarr;</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Zespół - TODO" formControlName="department">
+                  <mat-option value="krakow">Z.O. Kraków</mat-option>
+                  <mat-option value="tarnow">Z.O. Tarnów</mat-option>
+                  <mat-option value="poin">POIN</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input type="text" matInput placeholder="Znajdź pracownika" [matAutocomplete]="auto" formControlName="search">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectWorker($event)">
+                  <mat-option *ngFor="let worker of workersFilteredArray" [value]="worker">
+                    <span>{{ worker.firstName }} {{worker.lastName }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+          </div>
+
+        </div>
+      </mat-card-content>
     </mat-card>
+
   </div>
 
 </div>
