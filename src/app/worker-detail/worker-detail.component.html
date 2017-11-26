@@ -1,19 +1,24 @@
-<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+<div style="text-align:center">
+  <h1>Dane pracownika</h1>
+</div>  
+
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap" *ngIf="worker | async as worker; else loading">
 
   <div fxFlex="90">
     <mat-card>
       <mat-card-header>
         <mat-toolbar>
-          <span>{{ (worker | async)?.firstName }} {{ (worker | async)?.lastName }}</span>
+          <span>{{ worker.firstName }} {{ worker.lastName }}</span>
           <span class="spacer"></span>
           <button mat-button routerLink="/workeredit/{{ workerId }}"><mat-icon>edit</mat-icon></button>
+          <button mat-button (click)="openDialog()"><mat-icon>delete</mat-icon></button>
         </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
         <p>Id: <strong>{{ workerId }}</strong></p>
-        <p>Imię: {{ (worker | async)?.firstName }}</p>
-        <p>Nazwisko: {{ (worker | async)?.lastName }}</p>
-        <p>Płeć: {{ (worker | async)?.gender }}</p>
+        <p>Imię: {{ worker.firstName }}</p>
+        <p>Nazwisko: {{ worker.lastName }}</p>
+        <p>Płeć: {{ worker.gender }}</p>
       </mat-card-content>
     </mat-card>
   </div>
@@ -30,3 +35,7 @@
   </div>
 
 </div>
+
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
