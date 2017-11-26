@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -22,6 +22,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,10 +33,11 @@ import { WorkersComponent } from './workers/workers.component';
 import { DevicesComponent } from './devices/devices.component';
 import { WorkerService } from './worker.service';
 import { DeviceService } from './device.service';
-import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
+import { WorkerDetailComponent, DialogConfirmComponent } from './worker-detail/worker-detail.component';
 import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
+import { ToolbarComponent } from './ui/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,9 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     WorkerDetailComponent,
     WorkerEditComponent,
     PageNotFoundComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ToolbarComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -50,7 +57,7 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule,
+    // FormsModule,
 
     ReactiveFormsModule,
 
@@ -66,9 +73,21 @@ import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.co
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatAutocompleteModule
   ],
-  providers: [WorkerService, DeviceService],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    DialogConfirmComponent
+  ],
+  providers: [
+    WorkerService,
+    DeviceService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
