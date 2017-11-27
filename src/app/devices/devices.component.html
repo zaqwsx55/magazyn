@@ -1,17 +1,30 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center start" fxLayoutGap="5px">
-  <div fxFlex="32" *ngFor="let device of devices">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.icon }}</mat-icon></div>
-        <mat-card-title>{{ device.name }}</mat-card-title>
-        <mat-card-subtitle>{{ device.type }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="assets/img/devices/{{ device.image }}" alt="{{ device.name }}" class="device-image">
-      <mat-card-content>
-        <p>{{ device.name }}</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div style="text-align:center">
+  <h1>Sprzęty w magazynie</h1>
 </div>
 
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+  
+  <div fxFlex="90">
+    
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutWrap="wrap">
 
+      <div fxFlex="24" *ngFor="let device of devices">
+        <a routerLink="/workers" class="device-link">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.icon }}</mat-icon></div>
+              <mat-card-title>{{ device.name }}</mat-card-title>
+              <mat-card-subtitle>{{ device.type }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ device.name }}</p>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
