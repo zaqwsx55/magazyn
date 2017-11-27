@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap" *ngIf="device | async as device; else loading">
+
+  <div fxFlex="90" style="text-align:center">
+    <h1>{{ device.name }}</h1>
+  </div>
+  
+  <div fxFlex="90">
+    <mat-card>
+      <mat-card-header>
+        <mat-toolbar>
+          <span>{{ device.name }}</span>
+          <span class="spacer"></span>
+          <button mat-button routerLink="/deviceedit/{{ deviceId }}"><mat-icon>edit</mat-icon></button>
+        </mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Id: <strong>{{ deviceId }}</strong></p>
+        <p>Nazwa: {{ device.name }}</p>
+        <p>Typ: {{ device.type }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div fxFlex="90">
+    <mat-card>
+      <mat-card-header>
+        <mat-toolbar>Posiadany sprzęt</mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        {{ device.serialNumber }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+  
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
