@@ -1,10 +1,12 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
 import { WorkersComponent } from './workers/workers.component';
 import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { DevicesComponent } from './devices/devices.component';
+import { DeviceDetailComponent } from './device-detail/device-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 /**
@@ -18,7 +20,9 @@ const routes = [
   { path: 'workeredit', component: WorkerEditComponent },
   { path: 'workeredit/:id', component: WorkerEditComponent },
   { path: 'devices', component: DevicesComponent },
-  { path: '', redirectTo: '/workers', pathMatch: 'full' },
+  { path: 'devices/:id', component: DeviceDetailComponent },
+  { path: '', component: HomeComponent },
+  // { path: '', redirectTo: '/workers', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ]
 
