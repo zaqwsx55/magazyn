@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WorkerService {
 
-  workersCollection: AngularFirestoreCollection<Worker>;
+  workerCollection: AngularFirestoreCollection<Worker>;
   workers: Observable<Worker[]>;
 
   workerDocument: AngularFirestoreDocument<Worker>;
@@ -15,8 +15,8 @@ export class WorkerService {
   constructor(private db: AngularFirestore) { }
 
   getWorkers(sortField, sortOrder): Observable<Worker[]> {
-    this.workersCollection = this.db.collection('workers', ref => ref.orderBy(sortField, sortOrder));
-    this.workers = this.workersCollection.snapshotChanges().map(actions => {
+    this.workerCollection = this.db.collection('workers', ref => ref.orderBy(sortField, sortOrder));
+    this.workers = this.workerCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Worker;
         const id = a.payload.doc.id;
