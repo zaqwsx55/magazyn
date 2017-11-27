@@ -2,14 +2,16 @@
   <h1>Sprzęty w magazynie</h1>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap" *ngIf="devices | async as devices; else loading">
   
   <div fxFlex="90">
     
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutWrap="wrap">
+    <div fxLayout="row" fxLayoutWrap="wrap">
 
-      <div fxFlex="24" *ngFor="let device of devices">
-        <a routerLink="/workers" class="device-link">
+      <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100" *ngFor="let device of devices">
+
+        <div style="padding: 3px">
+        <a routerLink="/devices/{{ device.id }}" class="device-link">
           <mat-card>
             <mat-card-header>
               <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.icon }}</mat-icon></div>
@@ -21,6 +23,8 @@
             </mat-card-content>
           </mat-card>
         </a>
+        </div>
+
       </div>
 
     </div>
@@ -28,3 +32,7 @@
   </div>
 
 </div>
+
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

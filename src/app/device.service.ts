@@ -1,47 +1,37 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 import { Device } from './device';
 
 @Injectable()
 export class DeviceService {
 
-  devices = [
-    {
-      name: 'Dell e6430s',
-      type: 'Laptop',
-      icon: 'laptop',
-      image: 'dell-latitude-e6430s.jpg'
-    },
-    {
-      name: 'Kyocera FS-9530DN',
-      type: 'Drukarka',
-      icon: 'print',
-      image: 'kyocera-fs9530dn.jpg'
-    },
-    {
-      name: 'Fujitsu Fi-6240Z',
-      type: 'Skaner',
-      icon: 'scanner',
-      image: 'fujitsu-fi6240z.jpg'
-    },
-    {
-      name: 'IP Cisco CP-7975G',
-      type: 'Telefon',
-      icon: 'phone',
-      image: 'cisco-7975g.jpg'
-    },
-    {
-      name: 'Switch D-Link DGS-1008P',
-      type: 'Sieć',
-      icon: 'router',
-      image: 'DGS-1008P.png'
-    }
-  ];
+  deviceCollection: AngularFirestoreCollection<Device>;
+  devices: Observable<Device[]>;
 
-  constructor() { }
+  deviceDocument: AngularFirestoreDocument<Device>;
+  device: Observable<Device>;
+
+  constructor(private db: AngularFirestore) { }
 
   getDevices() {
+    this.deviceCollection = this.db.collection('devices');
+    this.devices = this.deviceCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Device;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      });
+    });
     return this.devices;
+  }
+
+  getDevice(id: string) {
+    this.deviceDocument = this.db.doc<Device>('/devices/' + id);
+    this.device = this.deviceDocument.valueChanges();
+    return this.device;
   }
 
 }

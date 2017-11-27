@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { DeviceService } from '../device.service';
 import { Device } from '../device';
@@ -10,7 +11,7 @@ import { Device } from '../device';
 })
 export class DevicesComponent implements OnInit {
 
-  devices: Device[];
+  devices: Observable<any[]>;
 
   constructor(private devicesService: DeviceService) { }
 
