@@ -6,7 +6,7 @@
 
   <div fxFlex="90">
 
-    <mat-card>
+    <mat-card class="workers-list">
       <mat-card-content>
 
         <div fxLayout="row" fxLayoutWrap="wrap">
@@ -21,7 +21,7 @@
             </mat-nav-list>
           </div>
 
-          <div fxFlex>
+          <div fxFlex class="right">
             <form [formGroup]="sortForm">
               <mat-form-field>
                 <mat-select formControlName="sort" placeholder="Sortuj według" (change)="onSortChanged()">
@@ -57,14 +57,10 @@
 
 </div>
 
-<div fxLayout="row" fxLayoutAlign="end start" fxLayoutWrap="wrap" *ngIf="!showSpinner">
-    
-  <div fxFlex="110px">
-    <button mat-fab routerLink="/workeredit">
-      <mat-icon class="add-button">add</mat-icon>
-    </button>
-  </div>
-
+<div class="fab-buttom" *ngIf="!showSpinner">
+  <button mat-fab routerLink="/workeredit">
+    <mat-icon class="add-button">add</mat-icon>
+  </button>
 </div>
 
 <ng-template #loading>

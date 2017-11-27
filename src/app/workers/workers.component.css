@@ -5,3 +5,17 @@
 .red-icon {
     color: red;
 }
+
+.right {
+    text-align: right;
+}
+
+.fab-buttom {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.workers-list {
+    margin-bottom: 30px;
+}
