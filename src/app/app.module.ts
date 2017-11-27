@@ -38,6 +38,9 @@ import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToolbarComponent } from './ui/toolbar/toolbar.component';
+import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import { DeviceEditComponent } from './device-edit/device-edit.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { ToolbarComponent } from './ui/toolbar/toolbar.component';
     PageNotFoundComponent,
     LoadingSpinnerComponent,
     ToolbarComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    DeviceDetailComponent,
+    DeviceEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserAnimationsModule,
