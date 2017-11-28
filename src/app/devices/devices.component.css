@@ -18,3 +18,9 @@
 .device-link {
     text-decoration: none;
 }
+
+.fab-buttom {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
