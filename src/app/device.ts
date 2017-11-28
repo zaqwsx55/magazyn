@@ -1,10 +1,18 @@
+import { DeviceType } from './device-type';
+import { Worker } from './worker';
+
 export class Device {
 
-    id: string;
+    id?: string;
     name: string;
-    type: string;
-    icon: string;
-    image: string;
-    serialNumber: string;
+    type: DeviceType;
+    quantity?: number;
+    jim?: string;
+    serialNumber?: string;
+    image?: string;
+    document?: string;
+    worker?: Worker;
+    voucherIn?: string;
+    voucherOut?: string;
 
 }
