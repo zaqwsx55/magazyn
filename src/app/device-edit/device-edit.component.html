@@ -1,3 +1,52 @@
-<p>
-  device-edit works!
-</p>
+<div style="text-align:center">
+  <h1>{{ pageTitle }}</h1>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
+  <div fxFlex="90">
+    <form [formGroup]="deviceForm" (ngSubmit)="saveDevice()" novalidate>
+      <mat-card>
+        <mat-card-content>
+          <div>Device id: {{ deviceId }}</div>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap="wrap">
+            <div fxFlex>
+              <mat-form-field>
+                <input matInput placeholder="Nazwa" formControlName="name">
+                <mat-error *ngIf="!deviceForm.controls['name'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field>
+                <mat-select placeholder="Typ urządzenia" [(value)]="selectedType">
+                  <mat-option *ngFor="let type of testObj" value="{{ type }}">{{ type.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!deviceForm.controls['type'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
+              </mat-form-field>
+              <!-- <mat-form-field>
+                <mat-select placeholder="Typ urządzenia" [(value)]="selectedType">
+                  <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.name }}">{{ type.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!deviceForm.controls['type'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
+              </mat-form-field> -->
+            </div>
+            <div fxFlex>
+              <mat-form-field>
+                <mat-select placeholder="Pracownik" formControlName="worker">
+                  <mat-option *ngFor="let worker of workers | async" value="{{ worker.id }}">{{ worker.firstName }} {{ worker.lastName }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" mat-button [disabled]="!deviceForm.valid">Zapisz</button>
+          <button mat-button (click)="goToDevices()">Anuluj</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</div>
+
+<p>Form value: {{ deviceForm.value | json }}</p>
+<p>Form status: {{ deviceForm.status | json }}</p>
+<p>Selected: {{ selectedType.name }}</p>
