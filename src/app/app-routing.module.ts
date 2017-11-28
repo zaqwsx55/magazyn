@@ -7,6 +7,7 @@ import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { DevicesComponent } from './devices/devices.component';
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import { DeviceEditComponent } from './device-edit/device-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 /**
@@ -21,6 +22,8 @@ const routes = [
   { path: 'workeredit/:id', component: WorkerEditComponent },
   { path: 'devices', component: DevicesComponent },
   { path: 'devices/:id', component: DeviceDetailComponent },
+  { path: 'deviceedit', component: DeviceEditComponent },
+  { path: 'deviceedit/:id', component: DeviceEditComponent },
   { path: '', component: HomeComponent },
   // { path: '', redirectTo: '/workers', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
