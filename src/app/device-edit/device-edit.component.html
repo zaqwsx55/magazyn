@@ -16,22 +16,20 @@
               </mat-form-field>
             </div>
             <div fxFlex>
-              <mat-form-field>
-                <mat-select placeholder="Typ urządzenia" formControlName="type">
-                  <mat-option *ngFor="let type of testObj" value="{{ type }}">{{ type.name }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="!deviceForm.controls['type'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
-              </mat-form-field>
-              <!-- <mat-form-field>
-                <mat-select placeholder="Typ urządzenia" [(value)]="selectedType">
-                  <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.name }}">{{ type.name }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="!deviceForm.controls['type'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
-              </mat-form-field> -->
+              <div formGroupName="type">
+                <mat-form-field>
+                  <mat-select placeholder="Typ urządzenia" formControlName="name">
+                    <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.name }}">{{ type.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Ikona" formControlName="icon">
+                </mat-form-field>
+              </div>
             </div>
             <div fxFlex>
               <mat-form-field>
-                <mat-select placeholder="Pracownik" formControlName="worker">
+                <mat-select placeholder="Pracownik" formControlName="workerId">
                   <mat-option *ngFor="let worker of workers | async" value="{{ worker.id }}">{{ worker.firstName }} {{ worker.lastName }}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -49,5 +47,3 @@
 
 <p>Form value: {{ deviceForm.value | json }}</p>
 <p>Form status: {{ deviceForm.status | json }}</p>
-<p>Selected: {{ selectedType }}</p>
-<p>Type value: {{ deviceForm.get('type').value }}</p>

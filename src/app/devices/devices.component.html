@@ -14,9 +14,9 @@
         <a routerLink="/devices/{{ device.id }}" class="device-link">
           <mat-card>
             <mat-card-header>
-              <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.type.icon }}</mat-icon></div>
+              <!-- <div mat-card-avatar><mat-icon color="accent" class="device-icon">{{ device.type.icon }}</mat-icon></div> -->
               <mat-card-title>{{ device.name }}</mat-card-title>
-              <mat-card-subtitle>{{ device.type.name }}</mat-card-subtitle>
+              <!-- <mat-card-subtitle>{{ device.type.name }}</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
               <p>{{ device.name }}</p>
@@ -43,3 +43,8 @@
   <app-loading-spinner></app-loading-spinner>
 </ng-template>
 
+<div *ngFor="let device of devices | async">
+  <p>{{ device.id }}</p>
+  <p>{{ device.name }}</p>
+  <p>{{ device.type | json }}</p>
+</div>

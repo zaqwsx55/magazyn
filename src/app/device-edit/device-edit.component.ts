@@ -46,9 +46,6 @@ export class DeviceEditComponent implements OnInit {
   ngOnInit() {
     this.createForm();
 
-    this.deviceTypes = this.deviceService.getDeviceTypes();
-    console.log(this.deviceTypes);
-
     this.workers = this.workerService.getWorkers('firstName', 'asc');
 
     this.deviceId = this.activatedRoute.snapshot.params.id;
@@ -59,10 +56,15 @@ export class DeviceEditComponent implements OnInit {
   }
 
   createForm() {
+    this.deviceTypes = this.deviceService.getDeviceTypes();
     this.deviceForm = this.formBuilder.group({
       name: ['', Validators.required],
-      type: {},
-      worker: ['']
+      type: this.formBuilder.group({
+        id: '',
+        name: '',
+        icon: 'test'
+      }),
+      workerId: ['']
     });
   }
 

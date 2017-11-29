@@ -12,6 +12,7 @@ import { Device } from '../device';
 export class DevicesComponent implements OnInit {
 
   devices: Observable<any[]>;
+  deviceTypes: Observable<any[]>;
 
   constructor(private devicesService: DeviceService) { }
 
@@ -21,6 +22,10 @@ export class DevicesComponent implements OnInit {
 
   getDevices(): void {
     this.devices = this.devicesService.getDevices();
+  }
+
+  getDeviceTypes(): void {
+    this.deviceTypes = this.devicesService.getDeviceTypes();
   }
 
 }
