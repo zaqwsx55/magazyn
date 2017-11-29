@@ -61,10 +61,7 @@ export class DeviceEditComponent implements OnInit {
   createForm() {
     this.deviceForm = this.formBuilder.group({
       name: ['', Validators.required],
-      type: this.formBuilder.group({
-        name: '',
-        icon: ''
-      }),
+      type: {},
       worker: ['']
     });
   }
