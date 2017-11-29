@@ -18,7 +18,10 @@
             <div fxFlex>
               <div formGroupName="type">
                 <mat-form-field>
-                  <mat-select placeholder="Typ urządzenia" formControlName="name">
+
+                  <!-- change is deprecated -->
+                  
+                  <mat-select placeholder="Typ urządzenia" formControlName="name" (change)="onTypeSelected()">
                     <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.name }}">{{ type.name }}</mat-option>
                   </mat-select>
                 </mat-form-field>

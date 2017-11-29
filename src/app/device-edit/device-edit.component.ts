@@ -1,3 +1,4 @@
+import { DeviceType } from './../device-type';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -25,7 +26,7 @@ export class DeviceEditComponent implements OnInit {
   workers: Observable<any[]>;
 
 
-  selectedType = '';
+  selectedType = new DeviceType();
 
 
 
@@ -62,10 +63,14 @@ export class DeviceEditComponent implements OnInit {
       type: this.formBuilder.group({
         id: '',
         name: '',
-        icon: 'test'
+        icon: ''
       }),
       workerId: ['']
     });
+  }
+
+  onTypeSelected() {
+    console.log('inside onTypeSelected');
   }
 
   getDevice() {
