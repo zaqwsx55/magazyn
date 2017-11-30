@@ -12,12 +12,13 @@ import { DeviceType } from './device-type';
 export class DeviceService {
 
   deviceCollection: AngularFirestoreCollection<Device>;
-  devices: Observable<any[]>;
+  devices: Observable<Device[]>;
 
   deviceDocument: AngularFirestoreDocument<Device>;
   device: Observable<Device>;
 
   deviceTypes: Observable<any[]>;
+  deviceType: Observable<any>;
 
 
 
@@ -26,72 +27,14 @@ export class DeviceService {
   constructor(private db: AngularFirestore) { }
 
   getDevices() {
-
-
-    // this.db.collection('device-types').valueChanges().forEach(type => {
-    //   console.log(type);
-    // })
-
-
-
-
-
     this.deviceCollection = this.db.collection('devices');
-
-
     this.devices = this.deviceCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
+        const data = a.payload.doc.data() as Device;
         const id = a.payload.doc.id;
-        const name = a.payload.doc.get('name');
-        const typeRef = this.db.doc('device-types/' + a.payload.doc.get('typeId'));
-        let type: {};
-        typeRef.valueChanges().map((t) => {
-          type = t;
-        })
-        // typeRef.valueChanges().subscribe((t: DeviceType) => {
-        //   type = t;
-        //   console.log('type: ' + t.name);
-        //   console.log('tutaj: ' + id, name, type);
-        // });
-        console.log('koniec: ' + id, name, type);
-        return {id, name, type}
+        return {id, ...data}
       })
     })
-
-
-
-
-    // this.devices = this.deviceCollection.snapshotChanges().map(actions => {
-    //   return actions.map(a => {
-
-
-
-
-
-
-
-    //     const data = a.payload.doc.data() as Device;
-    //     const id = a.payload.doc.id;
-
-
-    //     const deviceTypeId = a.payload.doc.get('typeId');
-
-    //     console.log('device type id: ' + deviceTypeId);
-
-    //     const deviceType = this.db.doc('device-types/' + deviceTypeId).valueChanges();
-    //     deviceType.subscribe((type: DeviceType) => {
-    //       data.type = type;
-
-    //       console.log('data: ' + data.type.id);
-
-
-    //     })
-    //     return {id, ...data};
-
-    //   });
-    // });
-
-
     return this.devices;
   }
 
@@ -118,6 +61,11 @@ export class DeviceService {
   getDeviceTypes() {
     this.deviceTypes = this.db.collection('device-types').valueChanges();
     return this.deviceTypes;
+  }
+
+  getDeviceType(id: string) {
+    this.deviceType = this.db.doc('device-types/' + id).valueChanges();
+    return this.deviceType;
   }
 
 }
