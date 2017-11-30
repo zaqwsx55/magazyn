@@ -1,4 +1,3 @@
-import { DeviceType } from './../device-type';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,22 +20,10 @@ export class DeviceEditComponent implements OnInit {
   deviceForm: FormGroup;
   deviceId: string;
   device: Observable<any>;
-  deviceTypes: Observable<any[]>;
+  deviceTypes: Observable<DeviceType[]>;
 
   workers: Observable<any[]>;
 
-
-  selectedType = new DeviceType();
-
-
-
-  testObj = [{
-    name: 'Laptop',
-    icon: 'laptop'
-  }, {
-    name: 'Drukarka',
-    icon: 'print'
-  }];
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -61,24 +48,41 @@ export class DeviceEditComponent implements OnInit {
     this.deviceForm = this.formBuilder.group({
       name: ['', Validators.required],
       type: this.formBuilder.group({
-        id: '',
+        id: ['', Validators.required],
         name: '',
         icon: ''
       }),
-      workerId: ['']
+      jim: '',
+      serialNumber: '',
+      document: '',
+      voucherIn: '',
+      image: '',
+      quantity: ['1', Validators.min(1)],
     });
   }
 
   onTypeSelected() {
-    console.log('inside onTypeSelected');
+    const typeId = this.deviceForm.get('type.id').value;
+    const selectedDeviceType = this.deviceService.getDeviceType(typeId);
+    selectedDeviceType.subscribe((type) => {
+      this.deviceForm.patchValue({
+        type: {
+          icon: type.icon,
+          name: type.name
+        }
+      })
+    });
   }
 
   getDevice() {
     if (this.deviceId) {
       this.device = this.deviceService.getDevice(this.deviceId);
       this.device.subscribe((d) => {
-        this.deviceForm.setValue({
+        this.deviceForm.patchValue({
           name: d.name,
+          type: {
+            id: d.type.id
+          }
         });
       });
     }
@@ -103,6 +107,5 @@ export class DeviceEditComponent implements OnInit {
   goToDevices() {
     this.router.navigate(['devices']);
   }
-
 
 }

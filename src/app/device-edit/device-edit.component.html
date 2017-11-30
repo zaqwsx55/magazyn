@@ -9,32 +9,49 @@
         <mat-card-content>
           <div>Device id: {{ deviceId }}</div>
           <div fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap="wrap">
-            <div fxFlex>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
               <mat-form-field>
                 <input matInput placeholder="Nazwa" formControlName="name">
                 <mat-error *ngIf="!deviceForm.controls['name'].valid">To pole jest <strong>wymagane</strong>.</mat-error>
               </mat-form-field>
             </div>
-            <div fxFlex>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
               <div formGroupName="type">
                 <mat-form-field>
-
-                  <!-- change is deprecated -->
-                  
-                  <mat-select placeholder="Typ urządzenia" formControlName="name" (change)="onTypeSelected()">
-                    <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.name }}">{{ type.name }}</mat-option>
+                  <mat-select placeholder="Typ urządzenia" formControlName="id" (selectionChange)="onTypeSelected()">
+                    <mat-option *ngFor="let type of deviceTypes | async" value="{{ type.id }}">{{ type.name }}</mat-option>
                   </mat-select>
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="Ikona" formControlName="icon">
                 </mat-form-field>
               </div>
             </div>
-            <div fxFlex>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
               <mat-form-field>
-                <mat-select placeholder="Pracownik" formControlName="workerId">
-                  <mat-option *ngFor="let worker of workers | async" value="{{ worker.id }}">{{ worker.firstName }} {{ worker.lastName }}</mat-option>
-                </mat-select>
+                <input matInput placeholder="JIM" formControlName="jim">
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
+              <mat-form-field>
+                <input matInput placeholder="Numer seryjny" formControlName="serialNumber">
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
+              <mat-form-field>
+                <input matInput placeholder="Dowód urządzenia" formControlName="document">
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
+              <mat-form-field>
+                <input matInput placeholder="Przyjęcie z magazynu" formControlName="voucherIn">
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
+              <mat-form-field>
+                <input matInput placeholder="Ilość" formControlName="quantity" type="number">
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.sm="50" fxFlex.xs="100">
+              <mat-form-field>
+                <input matInput placeholder="Zdjęcie" formControlName="image">
               </mat-form-field>
             </div>
           </div>
