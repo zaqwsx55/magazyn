@@ -24,7 +24,7 @@
           <div fxFlex class="right">
             <form [formGroup]="sortForm">
               <mat-form-field>
-                <mat-select formControlName="sort" placeholder="Sortuj według" (change)="onSortChanged()">
+                <mat-select formControlName="sort" placeholder="Sortuj według" (selectionChange)="onSortChanged()">
                   <mat-option value="firstName-asc">Imię &darr;</mat-option>
                   <mat-option value="firstName-desc">Imię &uarr;</mat-option>
                   <mat-option value="lastName-asc">Nazwisko &darr;</mat-option>
