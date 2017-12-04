@@ -26,15 +26,18 @@
     <mat-card>
       <mat-card-header>
         <mat-toolbar>
-          <span>Użytkownik</span>
+          <span>Pracownik</span>
           <span class="spacer"></span>
-          <button mat-button (click)="openDialog()" matTooltip="Przekaż sprzęt"><mat-icon>swap_horiz</mat-icon></button>
+          <button *ngIf="device.workerId" mat-button (click)="openDialog()" matTooltip="Zwróć do magazynu"><mat-icon>swap_horiz</mat-icon></button>
+          <button *ngIf="!device.workerId" mat-button (click)="openDialog()" matTooltip="Przekaż sprzęt"><mat-icon>swap_horiz</mat-icon></button>
         </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
         <div *ngIf="device.workerId">
           <div *ngIf="worker | async as worker; else loading">
-            {{ worker.firstName }} {{ worker.lastName }}
+            <a routerLink="/workers/{{ device.workerId }}">
+              {{ worker.firstName }} {{ worker.lastName }}
+            </a>
           </div>
         </div>
         <div *ngIf="!device.workerId">Brak - urządzenie w magazynie</div>
