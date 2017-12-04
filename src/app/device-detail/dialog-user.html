@@ -1,0 +1,34 @@
+<div>
+    <h3 mat-dialog-title>Przekazywanie sprzętu</h3>
+    <form [formGroup]="addUserForm" (ngSubmit)="saveForm()" novalidate>
+        <mat-dialog-content>
+            <div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="warp">
+                <div fxFlex="100">
+                    <mat-form-field style="display:block">
+                        <mat-select placeholder="Pracownik" formControlName="workerId">
+                            <mat-option *ngFor="let worker of workers | async as worker" value="{{ worker.id }}">{{ worker.firstName }} {{ worker.lastName }}</mat-option> 
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="49" fxFlex.xs="100">
+                    <mat-form-field style="display:block">
+                        <input matInput placeholder="Polecenie przekazania" formControlName="voucherOut">
+                        <mat-hint>Rozkaz Dzienny</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="2" fxHide.xs="true">&nbsp;</div>
+                <div fxFlex="49" fxFlex.xs="100">
+                    <mat-form-field style="display:block">
+                        <input matInput formControlName="voucherOutDate" [matDatepicker]="picker" placeholder="Data przekazania">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button type="submit" [disabled]="!addUserForm.valid" (click)="onCloseConfirm()">Zatwierdź</button>
+            <button mat-button mat-dialog-close>Anuluj</button>
+        </mat-dialog-actions>
+    </form>
+</div> 

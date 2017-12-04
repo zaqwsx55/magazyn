@@ -8,9 +8,10 @@
     <mat-card>
       <mat-card-header>
         <mat-toolbar>
+          <span><mat-icon color="accent" class="device-icon">{{ device.type.icon }}</mat-icon></span>
           <span>{{ device.name }}</span>
           <span class="spacer"></span>
-          <button mat-button routerLink="/deviceedit/{{ deviceId }}"><mat-icon>edit</mat-icon></button>
+          <button mat-button routerLink="/deviceedit/{{ deviceId }}" matTooltip="Edytuj"><mat-icon>edit</mat-icon></button>
         </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
@@ -24,10 +25,19 @@
   <div fxFlex="90">
     <mat-card>
       <mat-card-header>
-        <mat-toolbar>Posiadany sprzęt</mat-toolbar>
+        <mat-toolbar>
+          <span>Użytkownik</span>
+          <span class="spacer"></span>
+          <button mat-button (click)="openDialog()" matTooltip="Przekaż sprzęt"><mat-icon>swap_horiz</mat-icon></button>
+        </mat-toolbar>
       </mat-card-header>
       <mat-card-content>
-        {{ device.serialNumber }}
+        <div *ngIf="device.workerId">
+          <div *ngIf="worker | async as worker; else loading">
+            {{ worker.firstName }} {{ worker.lastName }}
+          </div>
+        </div>
+        <div *ngIf="!device.workerId">Brak - urządzenie w magazynie</div>
       </mat-card-content>
     </mat-card>
   </div>
