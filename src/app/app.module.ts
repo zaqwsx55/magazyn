@@ -26,6 +26,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +40,7 @@ import { WorkerEditComponent } from './worker-edit/worker-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 import { ToolbarComponent } from './ui/toolbar/toolbar.component';
-import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import { DeviceDetailComponent, DialogUserComponent } from './device-detail/device-detail.component';
 import { DeviceEditComponent } from './device-edit/device-edit.component';
 import { HomeComponent } from './home/home.component';
 
@@ -53,6 +55,7 @@ import { HomeComponent } from './home/home.component';
     LoadingSpinnerComponent,
     ToolbarComponent,
     DialogConfirmComponent,
+    DialogUserComponent,
     DeviceDetailComponent,
     DeviceEditComponent,
     HomeComponent
@@ -83,10 +86,13 @@ import { HomeComponent } from './home/home.component';
     MatTooltipModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents: [
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    DialogUserComponent
   ],
   providers: [
     WorkerService,
