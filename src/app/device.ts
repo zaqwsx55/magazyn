@@ -11,7 +11,7 @@ export class Device {
     serialNumber?: string;
     image?: string;
     document?: string;
-    worker?: Worker;
+    workerId?: string;
     voucherIn?: string;
     voucherOut?: string;
 
