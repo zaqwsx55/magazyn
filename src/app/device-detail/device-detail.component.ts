@@ -19,6 +19,7 @@ export class DeviceDetailComponent implements OnInit {
   deviceId: string;
   device: Observable<Device>;
   worker: Observable<any>;
+  workerId: string;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -35,7 +36,8 @@ export class DeviceDetailComponent implements OnInit {
     this.device = this.deviceService.getDevice(this.deviceId);
     this.device.subscribe((device) => {
       if (device.workerId) {
-        this.worker = this.workerService.getWorker(device.workerId);
+        this.workerId = device.workerId;
+        this.worker = this.workerService.getWorker(this.workerId);
       }
     })
   }
@@ -43,7 +45,8 @@ export class DeviceDetailComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(DialogUserComponent, {
       data: {
-        deviceId: this.deviceId
+        deviceId: this.deviceId,
+        workerId: this.workerId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -61,8 +64,10 @@ export class DeviceDetailComponent implements OnInit {
 export class DialogUserComponent implements OnInit {
 
   addUserForm: FormGroup;
+  removeUserForm: FormGroup;
   device: Observable<Device>;
   workers: Observable<any[]>;
+  workerId: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<DialogUserComponent>,
@@ -76,8 +81,14 @@ export class DialogUserComponent implements OnInit {
       voucherOut: ['', Validators.required],
       voucherOutDate: ''
     });
+    this.removeUserForm = this.formBuilder.group({
+      voucherIn: ['', Validators.required],
+      voucherInDate: ['', Validators.required]
+    });
     this.getDevice();
     this.getWorkers();
+    this.workerId = this.data.workerId;
+    console.log('workerId: ' + this.workerId);
   }
 
   getDevice() {
