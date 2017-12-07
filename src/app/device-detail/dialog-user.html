@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!workerId">
     <h3 mat-dialog-title>Przekazywanie sprzętu</h3>
     <form [formGroup]="addUserForm" (ngSubmit)="saveForm()" novalidate>
         <mat-dialog-content>
@@ -12,8 +12,8 @@
                 </div>
                 <div fxFlex="49" fxFlex.xs="100">
                     <mat-form-field style="display:block">
-                        <input matInput placeholder="Polecenie przekazania" formControlName="voucherOut">
-                        <mat-hint>Rozkaz Dzienny</mat-hint>
+                        <span matPrefix>Rozkaz Dzienny Nr &nbsp;</span>
+                        <input matInput formControlName="voucherOut">
                     </mat-form-field>
                 </div>
                 <div fxFlex="2" fxHide.xs="true">&nbsp;</div>
@@ -31,4 +31,33 @@
             <button mat-button mat-dialog-close>Anuluj</button>
         </mat-dialog-actions>
     </form>
-</div> 
+</div>
+
+<div *ngIf="workerId">
+    <h3 mat-dialog-title>Zwrot do magazynu</h3>
+    <form [formGroup]="removeUserForm" (ngSubmit)="saveForm()" novalidate>
+        <mat-dialog-content>
+            <div fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="warp">
+                <div fxFlex="49" fxFlex.xs="100">
+                    <mat-form-field style="display:block">
+                        <span matPrefix>Rozkaz Dzienny Nr &nbsp;</span>
+                        <input matInput formControlName="voucherIn">
+                        <mat-hint>Polecenie zwrócenia sprzętu do magazynu</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="2" fxHide.xs="true">&nbsp;</div>
+                <div fxFlex="49" fxFlex.xs="100">
+                    <mat-form-field style="display:block">
+                        <input matInput formControlName="voucherInDate" [matDatepicker]="picker" placeholder="Data zwrotu">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button type="submit" [disabled]="!removeUserForm.valid" (click)="onCloseConfirm()">Zatwierdź</button>
+            <button mat-button mat-dialog-close>Anuluj</button>
+        </mat-dialog-actions>
+    </form>
+</div>
